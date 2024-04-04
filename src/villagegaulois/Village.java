@@ -32,12 +32,7 @@ public class Village {
 		}
 	}
 	
-	@SuppressWarnings("serial")
-	public class VillageSansChefException extends RuntimeException {
-		  public VillageSansChefException(String s) {
-		    super(s);
-		  }
-	}
+
 
 	public Gaulois trouverHabitant(String nomGaulois) {
 		if (nomGaulois.equals(chef.getNom())) {
@@ -52,13 +47,19 @@ public class Village {
 		return null;
 	}
 
+	@SuppressWarnings("serial")
+	public class VillageSansChefException extends RuntimeException {
+		  public VillageSansChefException(String msg) {
+		    super(msg);
+		  }
+	}
+	
 
    public String afficherVillageois() throws VillageSansChefException {
-		try {
-			chef.getNom();
-		} catch (Exception e) {
-			throw new VillageSansChefException("Il n'y aucun chef dans ce village !");
-		}
+	
+	    if (chef == null) {
+	        throw new VillageSansChefException("Il n'y a aucun chef dans ce village !");
+	    }
 		StringBuilder chaine = new StringBuilder();
 		if (nbVillageois < 1) {
 			chaine.append("Il n'y a encore aucun habitant au village du chef "

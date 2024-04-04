@@ -39,9 +39,11 @@ public class Etal {
 			}
 			return chaine.toString();
 		} catch(Exception e ) {
-			throw new NullPointerException("?");
+			throw new NullPointerException("");
 		}
 	}
+
+
 
 	public String afficherEtal() {
 		if (etalOccupe) {
@@ -54,37 +56,36 @@ public class Etal {
 	
 	
 	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) {
-		if (quantiteAcheter < 1){
-			 throw new IllegalArgumentException("la quantité doit être positive");
-		}
-		try{
-			acheteur.getNom();
-		} catch (Exception e1) {
-			throw new IllegalStateException("l’acheteur ne doit pas être null");
-		}
-		try {
-			vendeur.getNom();
-		} catch (Exception e2) {
-			throw new IllegalStateException("l’étal doit être occupé");
-		}
-		
-		StringBuilder chaine = new StringBuilder();
-		chaine.append(acheteur.getNom() + " veut acheter " + quantiteAcheter + " " + produit + " à " + vendeur.getNom());
-		if (quantite == 0) {
-			chaine.append(", malheureusement il n'y en a plus !");
-			quantiteAcheter = 0;
-		}
-		if (quantiteAcheter > quantite) {
-			chaine.append(", comme il n'y en a plus que " + quantite + ", "+ acheteur.getNom() + " vide l'étal de "+ vendeur.getNom() + ".\n");
-			quantiteAcheter = quantite;
-			quantite = 0;
-		}
-		if (quantite != 0) {
-			quantite -= quantiteAcheter;
-			chaine.append(". " + acheteur.getNom()+ ", est ravi de tout trouver sur l'étal de "+ vendeur.getNom() + "\n");
-		}
-		return chaine.toString();
+	   
+	    if (quantiteAcheter < 1){
+	        throw new IllegalArgumentException("La quantité doit être positive");
+	    }
+
+	    
+	    if (acheteur == null) {
+	        throw new IllegalStateException("L’acheteur ne doit pas être null");
+	    }
+
+	    
+	    if (quantite == 0) {
+	        throw new IllegalStateException("L’étal doit être occupé");
+	    }
+
+	    StringBuilder chaine = new StringBuilder();
+	    chaine.append(acheteur.getNom() + " veut acheter " + quantiteAcheter + " " + produit + " à " + vendeur.getNom());
+
+	    // Gérer l'achat
+	    if (quantiteAcheter > quantite) {
+	        chaine.append(", malheureusement il n'y en a plus !");
+	        quantiteAcheter = quantite;
+	    }
+
+	    quantite -= quantiteAcheter;
+	    chaine.append(". " + acheteur.getNom() + " est ravi de tout trouver sur l'étal de " + vendeur.getNom() + "\n");
+	    
+	    return chaine.toString();
 	}
+
 
 	
 

@@ -44,45 +44,8 @@ public class Scenario {
 		
 		
 		
-		
-		
-		Village village = new Village("le village des irréductibles", 10, 5);
-		Gaulois bonemine = new Gaulois("Bonemine", 7);
-		Gaulois assurancetourix = new Gaulois("Assurancetourix", 2);
-		village.ajouterHabitant(bonemine);
-		village.ajouterHabitant(assurancetourix);
-		village.installerVendeur(bonemine, "fleurs", 20);
-		
-		
-		Etal etalFleur = village.rechercherEtal(bonemine);
-		try {
-			etal.acheterProduit(1,null);
-		}catch (Exception e1) {
-			System.out.println(e1.toString());
-			try {
-				etalFleur.acheterProduit(-2,assurancetourix);
-			} catch (Exception e2) {
-				System.out.println(e2.toString());
-				try {
-					etal.acheterProduit(2,assurancetourix);
-				} catch (Exception e3) {
-					System.out.println(e3.toString());
-					etalFleur.acheterProduit(2,assurancetourix);
-				}
-			}
-		}
-		System.out.println("Fin du test ");
-		
-		
-		
-		
-		village.setChef(null);
-		try{
-			village.afficherVillageois();
-		} catch (VillageSansChefException e) {
-			System.out.println(e.toString());
-		}
-		System.out.println("Fin du test ");
+
+
 	
 		
 		
